@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import CORS_ORIGINS
-from app.routers import incidents, reports
+from app.routers import crews, incidents, reports
 from seed import seed_if_empty
 
 
@@ -34,6 +34,7 @@ app.add_middleware(
 )
 
 app.include_router(incidents.router)
+app.include_router(crews.router)
 app.include_router(reports.router)
 
 

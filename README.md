@@ -1,6 +1,8 @@
 # GridResponse
 
-AI-powered storm outage triage and crew-dispatch dashboard — runs entirely on your local machine.
+AI-powered storm outage triage and crew-dispatch dashboard, running entirely on your local machine.
+
+![Demo](docs/demo.gif)
 
 ---
 
@@ -48,7 +50,7 @@ gridresponse/
 3. `Report` is persisted; incident `customers_affected` updated to parsed estimate
 4. ML `predict()` re-runs → new `predicted_eta_minutes` + `predicted_priority` persisted
 5. Response carries both the parsed JSON and the updated incident
-6. Frontend splices the updated incident into state — map marker recolours, table row and dashboard counts update instantly
+6. Frontend splices the updated incident into state; the map marker recolours, table row and dashboard counts update instantly
 
 ---
 
@@ -59,7 +61,7 @@ gridresponse/
 - Python 3.11+
 - Node.js 18+
 
-### 1 — Backend
+### 1. Backend
 
 ```bash
 cd backend
@@ -83,7 +85,7 @@ uvicorn app.main:app --reload --port 8000
 # Swagger UI → http://127.0.0.1:8000/docs
 ```
 
-### 2 — Frontend
+### 2. Frontend
 
 ```bash
 cd frontend
@@ -92,7 +94,7 @@ npm run dev
 # App → http://localhost:5173
 ```
 
-### 3 — Tests
+### 3. Tests
 
 ```bash
 cd backend
@@ -103,22 +105,22 @@ pytest tests/ -v
 
 ## ML evaluation metrics
 
-Printed by `python -m app.ml.train` on a held-out 20 % split of 1 500 synthetic incidents:
-
-<!-- Replace the placeholders below with the output from your own training run -->
+Trained on 1,500 synthetic incidents, evaluated on a held-out 20 % split:
 
 ```
 === Model 1: Restoration-ETA Regressor ===
-  Held-out MAE: ___ minutes
-  Held-out R2 : ___
+  Held-out MAE: 16.85 minutes
+  Held-out R2 : 0.91
 
 === Model 2: Priority Classifier ===
-  Held-out accuracy: ___
-  Held-out macro F1: ___
+  Held-out accuracy: 0.860
+  Held-out macro F1: 0.863
 ```
 
 ---
 
-## Screenshots
+## Interface
 
-<!-- Add screenshots here after running the app -->
+![Dashboard and map](docs/topscreen.png)
+
+![Incident list and field report parser](docs/bottomscreen.png)

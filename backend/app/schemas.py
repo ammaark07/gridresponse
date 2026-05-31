@@ -86,3 +86,4 @@ class ReportOut(BaseModel):
     raw_text: str
     parsed: ParsedReport
     created_at: datetime
+    incident: IncidentOut

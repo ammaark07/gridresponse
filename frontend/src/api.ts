@@ -58,6 +58,7 @@ export interface ReportResult {
   raw_text: string;
   parsed: ParsedReport;
   created_at: string;
+  incident: Incident;
 }
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {

@@ -6,6 +6,7 @@ import {
   type CrewAvailability,
   type Incident,
 } from "./api";
+
 import { Dashboard } from "./components/Dashboard";
 import { IncidentList } from "./components/IncidentList";
 import { IncidentMap } from "./components/IncidentMap";
@@ -18,6 +19,13 @@ export default function App() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const handleParsed = useCallback((updated: Incident) => {
+    setIncidents((prev) =>
+      prev.map((inc) => (inc.id === updated.id ? updated : inc))
+    );
+    setSelectedId(updated.id);
+  }, []);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -79,7 +87,7 @@ export default function App() {
 
         <section className="panel report-panel">
           <h3>Field report parser</h3>
-          <ReportForm incidents={incidents} selectedId={selectedId} />
+          <ReportForm incidents={incidents} selectedId={selectedId} onParsed={handleParsed} />
         </section>
       </div>
 

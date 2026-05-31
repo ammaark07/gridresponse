@@ -4,6 +4,10 @@ AI-powered storm outage triage and crew-dispatch dashboard, running entirely on 
 
 ![Demo](docs/demo.gif)
 
+![Demo](docs/demo.gif)
+
+![Dashboard and map](docs/topscreen.png)
+
 ---
 
 ## Architecture
